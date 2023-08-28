@@ -1,0 +1,454 @@
+9 days --> aws training will be
+Pradheep John R //aws instructor  
+start with the basics
+
+what do u mean by cloud computing 
+
+normal data centre and cloud computer difference 
+the infrastructure that we setup is our own i require various teams to maintain and moniter that infrastrcuture 
+if 100 users were coming and 10 users are coming in it isn not good 
+
+cloud the infrastructure part we dont have to worry about 
+that is taken care by organization which gives 
+we just utilize that resources and pay for that only 
+
+
+to manage the load we use the concept ha high availability 
+
+can acccess bank 24 hrs and maintaince window will be there 
+
+tooo many people access then resource contention might happpen 
+
+
+access live stream video streaming then cloud computing comes to picture where it deliver the data quickly 
+
+
+on premisis //organisation data center
+cloud //capablity of access to data 
+
+
+service models 
+iaas - infrastructure as a servicer
+
+i control that i need to take care of guest os runtime and virtualisation 
+paas - platform as a service
+application and data part i need to take care 
+saas - software as a service 
+everything will be provided by cloud provider 
+
+scaling means as and when resources were required u need to provide or capability of providing that resources 
+may be more demand in resources or less demand in resources 
+scale up(higher ampount) or scale down (lesser amount )
+
+scaling is done automaticaly by environment is auto scaling 
+software as a service example:-netflix we dont know from where they are hosting the data 
+
+
+
+in organization 
+working on application the data is stored in database 
+maintain the database if newer version it is paas worry about platform and data 
+
+
+client say i have requirement i want my data in big data environment 
+that too i want to run the data in multi clusters environment 
+
+Aws >Azure> Gcp OracleCloud ibmWatson
+we cant say which is best 
+which cloud company is has high market share 
+user friendlyness is azure 
+
+with robust and fast aws is best which 200+ services 
+
+how to work with aws console 
+
+account security credentials 
+gorrek_Genesis
+Aasr
+
+
+login as a root user use multi factor authentication 
+
+1061 2973 2153 account id
+
+we deploy our resources in region 
+mumbai hyderabad(2022)
+
+services>database>rds(traditional)
+		>dynamo db 
+services > traditional>Ec2
+
+if we click on aws logo it goes to recently visisted home page 
+
+left of account there is region 
+
+check which area servers were there in which area 
+where customer is there 
+
+availability zone is an environment that is identified within a aregion and in which region 
+which is not present in same fault line 
+
+
+availability zones are not same fault zones if u deploy one application will be made in available zones 
+so can use 24/7 
+segregated as fault lines and highly available 
+
+Mumbai 
+avail zones 3
+local zone s 2
+
+
+local zone is extension of region 
+delhi 
+kolkata 
+
+*region
+*availability zone 
+*local zone
+*fault zone  
+
+region 
+Local Zones are designed to bring the core services needed for the latency sensitive portions
+of your workload closer to end-users, while Availability Zones provide access to the full array 
+of AWS services.
+
+
+These locations are categorized by regions and Availability Zones.
+AWS Regions are large and widely dispersed into separate geographic locations. 
+Availability Zones are distinct locationswithin an AWS Region.
+that are engineered to be isolated from failures in other Availability Zones.
+
+
+change location 
+s3 most common used 
+simple storage services 
+buckets are containers for data stored in s3.
+
+ap-south-1 which is region identifier 
+
+where does the security come from 
+iam -identity access management 
+acl -access control list 
+
+go to 3 
+give name and select region 
+objcet owner ship 
+and acl enabled 
+and public should acces or not 
+
+
+
+click on create bucket 
+
+go to object 
+
+and later select properties  arn amazon resource name  and check resourse is in in which region 
+later management 
+
+using this resource name i can access bucket 
+ui is going to come from this arn 
+copy arn and go to web browser and access to 
+
+https://bucketname.s3.ap-south-1.amazonaws.com
+in objects upoad image 
+
+click on name of that image 
+then uri will be there 
+uniform resource identifier 
+object url is link 
+
+click on permissions change permisiions 
+acl enabled save changes 
+go to buckets permissions go to access 
+public access list and read 
+on that specific object like image permissions and bucket also i need to giv eprivilages 
+
+if we remove permissions then user cant access 
+
+
+
+
+
+
+wherever u r sitting the request will be made available in aws region 
+unless or until made available in multiple region 
+
+if u want u can make ur resource available in multiple region 
+u need consider 
+
+
+
+https://aws.amazon.com/developer/tools/
+
+
+programming languages can be used 
+
+click on command line tools and then download  aws command line 
+download 64 bit aws command line interface 
+
+but we installed but we need to configure to acccess my cloud 
+
+
+that comes from security credentials 
+
+we require access key 
+create access key u can activate or deactivate accordingly 
+without access u cant use cli 
+and configure region where iam accessing the 
+what configuration is already done 
+
+***configure cli 
+aws configure list //command to get list 
+
+now start configuring 
+aws configure set region ap-south-1 //
+now in windows explorer u can new file config is create which has region in it 
+aws 
+use secret key 
+bring credentials file into .aws folder 
+
+now when u use aws configure list 
+
+or it will ask each if we use this command 
+aws configure 
+it will ask each and everyone 
+access id 
+secret key
+default region ap-south-1
+default output format json 
+
+
+to set profile
+set AWS_DEFAULT_PROFILE=default 
+ 
+
+listing files in s3 
+aws s3 ls 
+
+we can create objects from cli 
+very simple make sure that we point to correct region and 
+we point to correct authenticattion mechanism 
+
+
+now start creating a bucket 
+aws s3api create-bucket --bucket demobucket-gorre-cli//error region specific 
+
+aws s3api create-bucket --bucket demobucket-gorre-cli --region ap-south-1
+//cant access s3 api error 
+
+make bucket 
+specify region 
+aws s3 mb s3://demobucket-gorre-cli --region ap-south-1
+
+aws s3 ls 
+now new bucket is created 
+
+
+we can also use  remove that using 
+no need to give location 
+if data is present use --recursive 
+rm->remove objects 
+rb->remove bucket itself
+aws s3 rm s3://demobucket-gorre-cli --recursive
+
+
+go to object happyface.jpg actions copy object and place that in bucket 
+
+aws s3 rb s3://demobucket-gorre-cli
+
+another service 
+vpc --virtual private cloud 
+
+pickup information of vpcs 
+aws ec2 describe-vpcs
+
+comfortable with management console and command line environment 
+sop cant give access to management most of times 
+
+
+to get all commands 
+[12:29 PM] Pradheep John (Presenter) (Guest)
+08/28
+https://docs.aws.amazon.com/
+
+aws --version
+always check the documentation for commands 
+
+
+
+if we close command prompt the profile is not setting up 
+
+to resolve this environment variables comes to the picture 
+
+setx AWS_DEFAULT_PROFILE=default 
+
+close and open its set ....machine level its updated ...
+***
+setx is command to set permanently 
+
+now check aws configure list 
+
+	
+it wll permanent till u change it 
+
+
+use correct options in command 
+
+aws s3 ls //list down particular commands 
+
+aws s3 rm s3://demobucket-gorre --recursive //empty all objects in that particular bucket 
+
+aws s3 rb s3://demobucket-gorre //remove my entire bucket
+
+
+in our case they created users but they have not given permissions 
+
+
+
+iam>users>gorre>create access key cli then next 
+then download csv file 
+
+
+if u want to access this user in cli then in credentials file 
+
+write 
+----------
+[gorre]
+aws_access_key_id = ********
+aws_secret_access_key = *******
+-----------
+replace * with values from csv 
+
+now in cli
+aws configure set profile gorre
+aws configure list 
+but default profile is set 
+
+another way  is 
+
+set AWS_PROFILE=gorre
+aws configure list now its changed 
+
+
+
+also in config file set location 
+write 
+-------
+
+
+-------
+
+
+set AWS_PROFILE=gorre 
+
+
+works fine 
+
+
+aws configure set region ap-south-1
+aws cofigure list 
+//
+[profile gorre]
+region=ap-south-1
+output = json
+
+set AWS_PROFILE= gorre
+aws  configure list 
+
+entire info will displayed 
+
+next aspect BASICS 
+
+
+--------
+how to create our own virtual private cloud 
+
+
+logical entity //virtual
+u specify what can be access 
+vpc --logically isolated virtual network 
+with in the vpc a range of ip adresssess are called subnet 
+
+
+in region multiple available zone 
+vpc can scan over multiple availability zones as part of that particular vpc 
+*****(**)***
+each subnet must reside with only one availability zone 
+
+
+i have one 1 vpc i have 3 availabilty zones with 6 subnet 
+categorize as private or public
+no connectivity from internet environment 
+public subnet means yes u can connect from internet and all 
+
+-------
+internet gate way is entry point to the network(Vpc)
+any request need to pass through as a door man
+
+
+https://cidr.xyz
+classless inter domain rooting 
+cidr stands for range of  ip adressses
+
+2 types of ip adressess
+ipv4 -32 bit enity
+`	10 . 88 .135 .144 /28
+10.0.0.0
+each part is octet 32/4 
+can specify how many range of network u can have and how many host we can have 
+
+we also different classes of ip adress that are there 
+class a - 0 -127 
+class  b -128-191
+class c -192-223
+class d -224-239
+class e - 240-255
+certain address are reserved adresses for example all zeroes is reserved 
+adresss like 0.0.0.0/0   -->open ip
+
+127.0.0.8/0 ->loop back adresss most common used ip adresss 
+0.0.0.8/0 ->any host within network 
+
+
+------normal 
+10.0.0.40/? ->16 
+we call ? it has mask  2^16 =65536 adreesss
+the first two octet is used to identify network 
+the 3 and 4 octect specify the physical machine 
+
+
+10.0.0.40/24
+count -256- zeroes = 255 
+
+172.31.0.0/16
+this means that 16 bits will be used identify network 
+with in 16 i can use 65,536 ip adresss of machine 
+subnet is part of ip adresss 
+always subnet will be higher than u specified 
+the ranges should not overlapping 
+verfy careful when specify ip adresss cidr ranges 
+
+work with internet gate way which is specified what will be allowed or what not 
+
+different route table will be creeated here 2 were created 
+1 for public and 1 for private 
+
+next level of abstraction comes to picture 
+
+route table we specify set of rules which is called as roots 
+which determines where traffic is going it.
+
+private will communicate with local gate way 
+public will communicate with internet gate way 
+
+if i dont specify no body cant access anything 
+--------------------
+ipv6 -128 bit enity 
+
+
+
+
+
+
+
+

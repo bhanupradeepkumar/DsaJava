@@ -65,6 +65,7 @@ Saturday Monday dynamodb and programming aspects how to connect with application
 what do u mean by cloud computing 
 
 normal data centre and cloud computer difference 
+api controller 
 the infrastructure that we setup is our own i require various teams to maintain and moniter that infrastrcuture 
 if 100 users were coming and 10 users are coming in it isn not good 
 
@@ -175,7 +176,7 @@ of AWS services.
 
 These locations are categorized by regions and Availability Zones.
 AWS Regions are large and widely dispersed into separate geographic locations. 
-Availability Zones are distinct locationswithin an AWS Region.
+Availability Zones are distinct locations within an AWS Region.
 that are engineered to be isolated from failures in other Availability Zones.
 
 
@@ -190,9 +191,9 @@ where does the security come from
 iam -identity access management 
 acl -access control list 
 
-go to 3 
+go to s3 
 give name and select region 
-objcet owner ship 
+object owner ship 
 and acl enabled 
 and public should acces or not 
 
@@ -1506,7 +1507,83 @@ when u work with other some changes required
 orchestation tool setting up the environment 
 aws fargate serverless hosting services depolying in ec2 instance 
 
+Dynamo db is no SQL data base
 
+In nosql data is stored in key and value pairs
+
+Don't have concept of rows and columns rather we have concept of key value pairs
+
+ 
+
+Can do scaling very quickly we don't have. To maintenance including encryption everything is taken care by Dynamo db all I have to do is go and create table thats it
+
+Configuration replication
+
+ 
+
+ 
+
+Charged for reading writing and storing of data
+
+Want to calculate cost for dynamo db
+
+ 
+
+ 
+
+Partioning key is one part of table primary key
+
+When data comes in distrube the data based on. Values
+
+Each employee I'd has unique
+
+We go with partioning key as repeated value which is dept id
+
+ 
+
+For partion depid
+
+For sorting empid
+
+ 
+
+Private rest API within vpc
+
+Public all
+
+How to invoke or work with api
+
+5 reasons to work with micro services
+
+Software is collection of small services which are independent are each other
+
+Development cycle is faster
+
+Monitoring and maintaince is easily
+
+Independently
+
+Communicate each other with well defined apis
+
+Scalability is quicker when u use micro services
+
+What is registry and repository
+
+Collection of something which will be registered
+
+Registry of something
+
+ 
+
+Ecr elastic container registry
+
+By default private registry is there created automatically
+
+If u want everyone to access push to public registry (pull scan )
+
+Repository docker
+
+has context menu
 what is cluster 
 
 -------------------------------------------------
@@ -1795,3 +1872,164 @@ chmod +x ./kubectl
 
 eks  create a cluster create role in iam eks 
 
+
+
+day9 last day ---------------------------
+scribe create instance and terminate scribe check 
+https://scribehow.com/shared/Launching_and_Terminating_an_EC2_Instance_in_AWS__xGhSPKKlTQ69an8HT8uBcg
+this will be assignment 
+
+
+
+----------python install---------------
+install python java 
+sudo yum -y install python-pip
+aws configure list
+
+sudo yum install python3 -y
+
+python3 -m venv my_app/env
+
+source ~/my_app/env/bin/activate [ec2-user ~]$
+pip install pip --upgrade
+pip install boto3
+python
+//sample code 
+import boto3
+
+ 
+
+def myfirstprog_s3():
+    """
+    Use the AWS SDK for Python (Boto3) to create an Amazon Simple Storage Service
+    (Amazon S3) resource and list the buckets in your account.
+    This example uses the default settings specified in your shared credentials
+    and config files.
+    """
+    s3_resource = boto3.resource('s3')
+    print("We are going to list s3 buckets:")
+    for bucket in s3_resource.buckets.all():
+        print(f"\t{bucket.name}")
+
+ 
+
+if __name__ == '__main__':
+    myfirstprog_s3()
+---------------------------------
+------------------Java and maven installation-----------------
+sudo amazon-linux-extras install java-openjdk11
+sudo wget https://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+sudo yum install -y apache-maven
+
+vi ListBucket.java
+
+insert i 
+
+//sample code 
+
+//snippet-sourcedescription:[ListBuckets.java demonstrates how to get a list of buckets in your AWS account.]
+//snippet-keyword:[Java]
+//snippet-sourcesyntax:[java]
+//snippet-keyword:[Code Sample]
+//snippet-keyword:[Amazon S3]
+//snippet-keyword:[listBuckets]
+//snippet-service:[s3]
+//snippet-sourcetype:[full-example]
+//snippet-sourcedate:[]
+//snippet-sourceauthor:[soo-aws]
+/*
+   Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+ 
+
+   This file is licensed under the Apache License, Version 2.0 (the "License").
+   You may not use this file except in compliance with the License. A copy of
+   the License is located at
+
+ 
+
+    http://aws.amazon.com/apache2.0/
+
+ 
+
+   This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+   CONDITIONS OF ANY KIND, either express or implied. See the License for the
+   specific language governing permissions and limitations under the License.
+*/
+package aws.example.s3;
+
+ 
+
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.Bucket;
+
+ 
+
+import java.util.List;
+
+ 
+
+/**
+* List your Amazon S3 buckets.
+* 
+* This code expects that you have AWS credentials set up per:
+* http://docs.aws.amazon.com/java-sdk/latest/developer-guide/setup-credentials.html
+*/
+public class ListBuckets {
+    public static void main(String[] args) {
+        final AmazonS3 s3 = AmazonS3ClientBuilder.standard().withRegion(Regions.DEFAULT_REGION).build();
+        List<Bucket> buckets = s3.listBuckets();
+        System.out.println("Your Amazon S3 buckets are:");
+        for (Bucket b : buckets) {
+            System.out.println("* " + b.getName());
+        }
+    }
+}
+
+esc :wq enter 
+
+run this program 
+javac ListBuckets.java 
+
+
+install 
+sudo yum install java-17-amazon-corretto-devel
+
+sudo yum remove apache-maven
+
+sudo yum install -y apache-maven
+
+mvn archetype:generate   -DarchetypeGroupId=software.amazon.awssdk   -DarchetypeArtifactId=archetype-app-quickstart   -DarchetypeVersion=2.20.43
+
+
+s3
+
+apache-client
+
+false
+
+identity-center
+
+aws.examples.s3
+
+javaproject
+
+click next two enters later 
+and now build success
+
+cd javaproject 
+
+---------------------------------------
+
+type access key and secret id use-east-1
+json 
+
+
+
+
+///read the error and do the things 
+
+permission problem they will check 
